@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div className='bg-gray-200 min-h-screen'>
-      <div className='bg-white max-w-xl min-h-screen max-h-screen overflow-auto'>
+      <div className='bg-white max-w-xl min-h-screen max-h-screen overflow-y-scroll'>
         <h1 className='text-3xl p-4 text-purple-200'>toDoosh</h1>
         <FiltersBar activeFilter={activeFilter}/>
         <AddTodoForm/>

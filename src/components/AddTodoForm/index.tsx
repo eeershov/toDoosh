@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/todoSlice';
 
@@ -7,11 +7,14 @@ const AddTodoForm = () => {
 
   const dispatch = useDispatch();
 
-	const onSubmit = (event) => {
+	const onSubmit = (event: SyntheticEvent) => {
 		event.preventDefault();
-    dispatch(addTodo({
-      title: value,
-    }));
+		if (value.length>0) {
+			setValue('');
+			dispatch(addTodo({
+				title: value,
+			}));
+		}
 	};
 
 	return (
