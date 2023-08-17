@@ -1,20 +1,30 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Todo } from '../interfaces/todo';
+import { Status } from '../interfaces/statuses';
 
 export const getTodosAsync = createAsyncThunk(
   'todos/getTodosAsync',
   async () => {
-    const todos: [] | Todo[] = await fetch('https://jsonplaceholder.typicode.com/users/1/todos')
-      .then(response => response.json())
-      .catch(err => alert(err));
-      return { todos };
+    const url = 'https://jsonplaceholder.typicode.com/users/1/todos';
+
+    const todos: [] | Todo[] = await fetch(url)
+      .then(response => response.json());
+    await new Promise((resolve) =>
+      setTimeout(()=>resolve(''), 500),
+    );
+    return {todos};
   }
 );
 
 
-const initialState = {
+export interface TodosState {
+  todos: Todo[],
+  status: Status,
+}
+
+const initialState: TodosState = {
   todos: [],
-  status: 'idle',
+  status: 'Idle',
 };
 
 const todoSlice = createSlice({
@@ -41,8 +51,15 @@ const todoSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+    .addCase(getTodosAsync.pending, (state) => {
+      state.status = 'Loading';
+    })
     .addCase(getTodosAsync.fulfilled, (state, action) => {
       state.todos = action.payload.todos;
+      state.status = 'Success';
+    })
+    .addCase(getTodosAsync.rejected, (state) => {
+      state.status = 'Error';
     });
   }
 });

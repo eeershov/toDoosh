@@ -5,9 +5,10 @@ import AddTodoForm from './components/AddTodoForm';
 import { FiltersBar } from './components/FiltersBar';
 import { useAppSelector, useAppDispatch } from './redux/hooks';
 import { getTodosAsync } from './redux/todoSlice';
+import StatusHandler from './components/FetchStatusHandler';
 
 function App() {
-  const todos = useAppSelector(state => state.todos.todos);
+  const {todos, status} = useAppSelector(state => state.todos);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -20,7 +21,8 @@ function App() {
         <h1 className='text-3xl'>todo</h1>
         <FiltersBar/>
         <AddTodoForm/>
-        <TodoList {...{ todos: todos }} />
+        <StatusHandler status={status}/>
+        <TodoList {...{ todos: todos }}/>
       </div>
     </div>
   );
