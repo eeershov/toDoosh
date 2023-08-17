@@ -9,11 +9,7 @@ export const getTodosAsync = createAsyncThunk(
     const url = 'https://jsonplaceholder.typicode.com/users/1/todos';
 
     const todos: [] | Todo[] = await fetch(url)
-      .then(response => response.json());
-    await new Promise((resolve) =>
-      setTimeout(()=>resolve(''), 500),
-    );
-    
+      .then(response => response.json());    
     const lastFive = todos.slice(-5);
 
     return {todos: lastFive};
