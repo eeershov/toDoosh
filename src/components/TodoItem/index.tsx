@@ -10,7 +10,8 @@ export function TodoItem({ id, title, completed }: Todo) {
   const dispatch = useDispatch();
   const [editing, setEditing] = useState(false); // State to track editing mode
   const [editedTitle, setEditedTitle] = useState(title); // State to track edited title
-
+  const [style, setStyle] = useState('hidden'); // State to track visibility of delete button
+  
   const handleToggle = () => {
     dispatch(toggleComplete({
       id: id,
@@ -35,13 +36,6 @@ export function TodoItem({ id, title, completed }: Todo) {
   const handleEditClick = () => {
     setEditing(true);
   };
-
-
-  const [style, setStyle] = useState('hidden');
-
-
-
-
 
 
   return (
