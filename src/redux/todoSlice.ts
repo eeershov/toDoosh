@@ -56,6 +56,10 @@ const todoSlice = createSlice({
     },
     applyFilter: (state, action: PayloadAction<{filter: Filter}>) => {
       state.activeFilter = action.payload.filter;
+    },
+    editTodo: (state, action: PayloadAction<{id: number, title: string}>) => {
+      const todoIndex = state.todos.findIndex(todo => todo.id === action.payload.id);
+      state.todos[todoIndex].title = action.payload.title;
     }
   },
   extraReducers: (builder) => {
@@ -73,5 +77,5 @@ const todoSlice = createSlice({
   }
 });
 
-export const { addTodo, toggleComplete, applyFilter } = todoSlice.actions;
+export const { addTodo, toggleComplete, applyFilter, editTodo } = todoSlice.actions;
 export const todoReducer = todoSlice.reducer;
