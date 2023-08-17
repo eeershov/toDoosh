@@ -10,7 +10,7 @@ export function TodoList({todos}: PropsData) {
     <>
       <ul className="flex flex-col">
         {
-          todos.map((item)=>{
+          todos.slice().reverse().map((item)=>{
             return(
               <TodoItem key={item.id} {...item} />
             );

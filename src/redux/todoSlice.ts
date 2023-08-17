@@ -38,6 +38,7 @@ const todoSlice = createSlice({
   initialState: initialState,
   reducers: {
     addTodo: (state, action: PayloadAction<{title: string}>) => {
+      // Assuming that we are getting data ordered by id from the server
       let currentId = state.todos[state.todos.length-1]?.id;
       if (!currentId) {
         currentId = 0;
@@ -48,7 +49,7 @@ const todoSlice = createSlice({
         title: action.payload.title,
         completed: false,
       };
-      state.todos.unshift(newTodo);
+      state.todos.push(newTodo);
     },
     toggleComplete: (state, action: PayloadAction<{id: number, completed: boolean}>) => {
       const todoIndex = state.todos.findIndex(todo => todo.id === action.payload.id);
