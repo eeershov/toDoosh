@@ -1,4 +1,4 @@
-const statuses = {
+export const statuses = {
   idle: 'Idle',
   loading: 'Loading',
   error: 'Error',
