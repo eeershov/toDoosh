@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import './App.css';
 import { TodoList } from './components/TodoList';
+import AddTodoForm from './components/AddTodoForm';
+import { FiltersBar } from './components/FiltersBar';
 import { useAppSelector, useAppDispatch } from './redux/hooks';
 import { getTodosAsync } from './redux/todoSlice';
 
@@ -16,6 +18,8 @@ function App() {
     <div className='bg-gray-200'>
       <div className='bg-white max-w-xl'>
         <h1 className='text-3xl'>todo</h1>
+        <FiltersBar/>
+        <AddTodoForm/>
         <TodoList {...{ todos: todos }} />
       </div>
     </div>
