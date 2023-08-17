@@ -1,10 +1,12 @@
-export function FiltersBar() {
-  const classStyle = `rounded-full bg-purple-400 hover:bg-purple-500 hover:text-white pointer bg-opacity-70 px-2 py-1`;
+import ChipButton from "./ChipButton";
+import { filters, Filter } from "../../interfaces/filters";
+
+export function FiltersBar({activeFilter}: {activeFilter: Filter}) {
   return (
     <div className="flex p-2 gap-4">
-      <span className={classStyle}>All</span>
-      <span className={classStyle}>Active</span>
-      <span className={classStyle}>Completed</span>
+      <ChipButton buttonText="All" filterName={filters.all} activeFilter={activeFilter} />
+      <ChipButton buttonText="Active" filterName={filters.active} activeFilter={activeFilter} />
+      <ChipButton buttonText="Completed" filterName={filters.completed} activeFilter={activeFilter} />
     </div>
   );
 }

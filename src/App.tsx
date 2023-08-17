@@ -8,7 +8,7 @@ import { getTodosAsync } from './redux/todoSlice';
 import StatusHandler from './components/FetchStatusHandler';
 
 function App() {
-  const {todos, status} = useAppSelector(state => state.todos);
+  const {todos, status, activeFilter} = useAppSelector(state => state.todos);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function App() {
     <div className='bg-gray-200'>
       <div className='bg-white max-w-xl'>
         <h1 className='text-3xl'>todo</h1>
-        <FiltersBar/>
+        <FiltersBar activeFilter={activeFilter}/>
         <AddTodoForm/>
         <StatusHandler status={status}/>
         <TodoList {...{ todos: todos }}/>

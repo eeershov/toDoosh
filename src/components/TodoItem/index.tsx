@@ -21,7 +21,7 @@ export function TodoItem({id, title, completed}: Todo) {
         {completed && <Checkmark className="opacity-70 absolute top-0 left-0"/>}
       </span>
       <span className="leading-6">
-        {title} and {Number(completed)}
+        {title}
       </span>
     </li>
   );

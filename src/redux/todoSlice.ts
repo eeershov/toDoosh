@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Todo } from '../interfaces/todo';
 import { Status } from '../interfaces/statuses';
+import { Filter } from '../interfaces/filters';
 
 export const getTodosAsync = createAsyncThunk(
   'todos/getTodosAsync',
@@ -23,11 +24,13 @@ export const getTodosAsync = createAsyncThunk(
 export interface TodosState {
   todos: Todo[],
   status: Status,
+  activeFilter: Filter,
 }
 
 const initialState: TodosState = {
   todos: [],
   status: 'Idle',
+  activeFilter: 'All',
 };
 
 const todoSlice = createSlice({
@@ -50,6 +53,9 @@ const todoSlice = createSlice({
     toggleComplete: (state, action: PayloadAction<{id: number, completed: boolean}>) => {
       const todoIndex = state.todos.findIndex(todo => todo.id === action.payload.id);
       state.todos[todoIndex].completed = action.payload.completed; 
+    },
+    applyFilter: (state, action: PayloadAction<{filter: Filter}>) => {
+      state.activeFilter = action.payload.filter;
     }
   },
   extraReducers: (builder) => {
@@ -67,5 +73,5 @@ const todoSlice = createSlice({
   }
 });
 
-export const { addTodo, toggleComplete } = todoSlice.actions;
+export const { addTodo, toggleComplete, applyFilter } = todoSlice.actions;
 export const todoReducer = todoSlice.reducer;
