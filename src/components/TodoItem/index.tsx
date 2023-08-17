@@ -65,7 +65,9 @@ export function TodoItem({ id, title, completed }: Todo) {
           </div>
         )}
       </div>
-      <button onClick={()=>dispatch(removeSingleTodo({id: id}))} className={`${style} w-8 h-8 absolute right-0 hover:bg-red-500 hover:bg-opacity-70 rounded-full`}><Trashcan/></button>
+      <div className="w-8 h-8 relative">
+        <button onClick={()=>dispatch(removeSingleTodo({id: id}))} className={`${style} w-8 h-8 absolute right-0 hover:bg-red-500 hover:bg-opacity-70 rounded-full`}><Trashcan/></button>
+      </div>
     </li>
   );
 }
