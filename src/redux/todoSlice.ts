@@ -12,7 +12,10 @@ export const getTodosAsync = createAsyncThunk(
     await new Promise((resolve) =>
       setTimeout(()=>resolve(''), 500),
     );
-    return {todos};
+    
+    const lastFive = todos.slice(-5);
+
+    return {todos: lastFive};
   }
 );
 
