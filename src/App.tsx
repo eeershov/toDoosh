@@ -15,8 +15,13 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getTodosAsync());
-  }, [dispatch]);
+    // Success means user did get data from the server at least once
+    // therefore there is no need to get it again
+    // and (for example) having zero todos is users choice
+    if (status!=="Success") {
+      dispatch(getTodosAsync());
+    }
+  }, [dispatch, status]);
 
   const filterTodos = (todos: Todo[], activeFilter: Filter) => {
     switch (activeFilter) {
